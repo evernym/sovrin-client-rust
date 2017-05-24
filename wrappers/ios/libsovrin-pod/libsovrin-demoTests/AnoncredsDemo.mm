@@ -76,8 +76,8 @@
                         \"name\":\"gvt\",\
                         \"version\":\"1.0\",\
                         \"attribute_names\":[\"age\",\"sex\",\"height\",\"name\"],\
-                        \"seq_no\":%d\
-                        }", seqNo ];
+                        \"seq_no\":%lu\
+                        }", (unsigned long)seqNo ];
     
     __block NSString *claimJSON = nil;
     __block NSString *claimDefUUID = nil;
@@ -134,7 +134,7 @@
 
     NSString *proverDiD = @"some_prover_did";
     
-    NSString *claimOfferJSON =  [NSString stringWithFormat: @"{\"issuer_did\":\"some_issuer_did\",\"claim_def_seq_no\":%d}", seqNo];
+    NSString *claimOfferJSON =  [NSString stringWithFormat: @"{\"issuer_did\":\"some_issuer_did\",\"claim_def_seq_no\":%lu}", (unsigned long)seqNo];
     __block NSString *claimReqJSON = nil;
     
     ret = [SovrinAnoncreds proverCreateAndStoreClaimReq: walletHandle
@@ -201,18 +201,18 @@
                                \"nonce\":\"123432421212\",\
                                \"requested_attrs\":{\
                                \"attr1_uuid\":{\
-                               \"schema_seq_no\":%d,\
-                               \"name\":\"name\"\
-                               }\
-                               },\
-                               \"requested_predicates\":{\
-                               \"predicate1_uuid\":{\
-                               \"attr_name\":\"age\",\
-                               \"p_type\":\"GE\",\
-                               \"value\":18\
-                               }\
-                               }\
-                               }", seqNo ];
+                              \"schema_seq_no\":%lu,\
+                              \"name\":\"name\"\
+                              }\
+                              },\
+                              \"requested_predicates\":{\
+                              \"predicate1_uuid\":{\
+                              \"attr_name\":\"age\",\
+                              \"p_type\":\"GE\",\
+                              \"value\":18\
+                              }\
+                              }\
+                              }", (unsigned long)seqNo ];
     
     ret = [SovrinAnoncreds proverGetClaimsForProofReq:  walletHandle
                                          proofReqJSON:  proofReqJSON
@@ -231,13 +231,13 @@
 
     NSString* requestedClaimsJSON = [ NSString stringWithFormat: @"{\
                                                                        \"self_attested_attributes\":{},\
-                                                                       \"requested_attrs\":{\"attr1_uuid\":[\"%d\",true]},\
-                                                                       \"requested_predicates\":{\"predicate1_uuid\":\"%d\"}\
-                                                                    }", seqNo, seqNo ];
+                                                                       \"requested_attrs\":{\"attr1_uuid\":[\"%lu\",true]},\
+                                                                       \"requested_predicates\":{\"predicate1_uuid\":\"%lu\"}\
+                                                                   }", (unsigned long)seqNo, (unsigned long)seqNo ];
     
-    NSString *schemas = [NSString stringWithFormat: @"{\"%d\":%@}", seqNo, schema];
+    NSString *schemas = [NSString stringWithFormat: @"{\"%lu\":%@}", (unsigned long)seqNo, schema];
     
-    NSString *claimDefsJSON = [NSString stringWithFormat: @"{\"%d\":%@}", seqNo, claimJSON];
+    NSString *claimDefsJSON = [NSString stringWithFormat: @"{\"%lu\":%@}", (unsigned long)seqNo, claimJSON];
     
     NSString *revocRegsJsons = @"{}";
     
